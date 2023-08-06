@@ -35,7 +35,7 @@ public class CourseDAOImpl implements CourseDAO {
 	public void updateCourse(Course course) {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"UPDATE courses SET duration=?, course_name=?, univ_id=?, description=? WHERE course_id=?");
+					"UPDATE course SET duration=?, course_name=?, univ_id=?, description=? WHERE course_id=?");
 			preparedStatement.setString(1, course.getDuration());
 			preparedStatement.setString(2, course.getCourseName());
 			preparedStatement.setInt(3, course.getUnivId());
@@ -51,7 +51,7 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public void deleteCourse(int courseId) {
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM courses WHERE course_id=?");
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM course WHERE course_id=?");
 			preparedStatement.setInt(1, courseId);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -85,7 +85,7 @@ public class CourseDAOImpl implements CourseDAO {
 	public List<Course> getAllCourses() {
 		List<Course> courses = new ArrayList<>();
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM courses");
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM course");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Course course = new Course();
